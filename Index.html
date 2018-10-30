@@ -1,0 +1,443 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<title>Transportation App</title>
+
+	<!-- Bootstrap core CSS -->
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/bootstrap-grid.min.css" rel="stylesheet">
+	<link href="css/bootstrap-reboot.min.css" rel="stylesheet">
+
+	<!-- Custom styles for this template -->
+	<link href="css/narrow-jumbotron.css" rel="stylesheet">
+	<style type="text/css">
+		body{
+			background-color: #80a38c;
+		}
+
+		.bus_stops{
+			font-size: 20px;
+			font-weight: 700;
+		}
+		.three{
+			padding-left: 100px;
+		}
+
+		.big_box{
+			border:dotted #000 2px;
+			padding: 5px;
+			padding-bottom: 0px;
+			border-radius: 15px;
+			background-color: #e5e5e5;
+			margin: 10px;
+		}
+
+
+	</style>
+</head>
+
+<body>
+
+	<div class="container">
+		<div class="header clearfix">
+			<nav>
+				<ul class="nav nav-pills float-right">
+					<li class="nav-item">
+						<a class="nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="untitled.html">Map</a>
+					</li>
+					<li class="nav-item">
+						<div class="dropdown">
+							<button class="btn btn-primary dropdown-toggle" type="button" id="about-us" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								Timings
+							</button>
+							<div class="dropdown-menu" aria-labelledby="about-us">
+								<a class="dropdown-item" href="#"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal4">AIIMS</button></a>
+								<a class="dropdown-item" href="#"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal5">DHAULA KAUN</button></a>
+								
+							</div>
+
+						</div>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="bench-class.php">Benchmark Function</a>
+					</li>
+				</ul>
+			</nav>
+			<h3 class="text">Transportation App</h3>
+		</div>
+
+		<div class="jumbotron">
+			<img src="imgs/unnamed.png">
+			<h1 class="display-3">Timings and Map of Buses of Delhi</h1>
+		</div>
+
+		<div class="row marketing">
+			<div class="col-lg-6">
+				<div class="big_box">
+					<div class="three"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">392 Up</button></div><span class="bus_stops">Bus Stops:</span>
+					<!-- Modal -->
+					<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel">392UP</h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<?php    
+									$db_host = "localhost";    
+									$db_username = "root";    
+									$db_pass = "root";   
+									$db_name = "392upp";  
+
+									@($GLOBALS["___mysqli_ston"] = mysqli_connect("$db_host",  "$db_username",  "$db_pass")) or die("can not connect to mysql"); 
+									@mysqli_select_db($GLOBALS["___mysqli_ston"], $db_name) or die("no database"); 
+									echo "successful connection"; 
+									$result_query = "SELECT * FROM `392upp`"; 
+
+									$run_result = mysqli_query($GLOBALS["___mysqli_ston"], $result_query); 
+
+									if(mysqli_num_rows($run_result)<1){ 
+
+										echo "<center><b>Oops! sorry, nothing was found in the database!</b></center>"; 
+										exit(); 
+
+									} 
+
+									while($row_result=mysqli_fetch_array($run_result)){ 
+
+										$site_title=$row_result['AveragePrice']; 
+										$site_link=$row_result['stop']; 
+										$site_link1=$row_result['date']; 
+										$site_link2=$row_result['time']; 
+
+
+
+										echo "<div> 
+
+										<p>$site_title $site_link $site_link1 - $site_link2</p> 
+									</div>"; 
+
+								}
+								?>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<p>Maya Puri Chowk, Naraina Village, Dhaula Kuan, Moti Bagh, Narouji Nagar, A.I.I.M.S., Andrews Ganj, Lajpat Nagar, Noida Sector 62</p>
+			</div>
+			<div class="modal fade" id="exampleModal4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel">AIIMS</h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<?php    
+									$db_host = "localhost";    
+									$db_username = "root";    
+									$db_pass = "root";   
+									$db_name = "aiims";  
+
+									@($GLOBALS["___mysqli_ston"] = mysqli_connect("$db_host",  "$db_username",  "$db_pass")) or die("can not connect to mysql"); 
+									@mysqli_select_db($GLOBALS["___mysqli_ston"], $db_name) or die("no database"); 
+									echo "successful connection"; 
+									$result_query = "SELECT * FROM `aiims`"; 
+
+									$run_result = mysqli_query($GLOBALS["___mysqli_ston"], $result_query); 
+
+									if(mysqli_num_rows($run_result)<1){ 
+
+										echo "<center><b>Oops! sorry, nothing was found in the database!</b></center>"; 
+										exit(); 
+
+									} 
+
+									while($row_result=mysqli_fetch_array($run_result)){ 
+
+										$site_title=$row_result['AveragePrice']; 
+										$site_link=$row_result['route']; 
+										$site_link1=$row_result['date']; 
+										$site_link2=$row_result['time']; 
+
+
+
+										echo "<div> 
+
+										<p>$site_title $site_link $site_link1 - $site_link2</p> 
+									</div>"; 
+
+								}
+								?>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal fade" id="exampleModal5" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel">DHAULA KAUN</h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<?php    
+									$db_host = "localhost";    
+									$db_username = "root";    
+									$db_pass = "root";   
+									$db_name = "dhaulakaun";  
+
+									@($GLOBALS["___mysqli_ston"] = mysqli_connect("$db_host",  "$db_username",  "$db_pass")) or die("can not connect to mysql"); 
+									@mysqli_select_db($GLOBALS["___mysqli_ston"], $db_name) or die("no database"); 
+									echo "successful connection"; 
+									$result_query = "SELECT * FROM `dhaulakaun`"; 
+
+									$run_result = mysqli_query($GLOBALS["___mysqli_ston"], $result_query); 
+
+									if(mysqli_num_rows($run_result)<1){ 
+
+										echo "<center><b>Oops! sorry, nothing was found in the database!</b></center>"; 
+										exit(); 
+
+									} 
+
+									while($row_result=mysqli_fetch_array($run_result)){ 
+
+										$site_title=$row_result['AveragePrice']; 
+										$site_link=$row_result['route']; 
+										$site_link1=$row_result['date']; 
+										$site_link2=$row_result['time']; 
+
+
+
+										echo "<div> 
+
+										<p>$site_title $site_link $site_link1 - $site_link2</p> 
+									</div>"; 
+
+								}
+								?>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			<div class="big_box">
+				<div class="three"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1">392 Down</button></div><span class="bus_stops">Bus Stops:</span>
+				<!-- Modal -->
+				<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLabel">392 DOWN</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<?php    
+								$db_host = "localhost";    
+								$db_username = "root";    
+								$db_pass = "root";   
+								$db_name = "392down";  
+
+								@($GLOBALS["___mysqli_ston"] = mysqli_connect("$db_host",  "$db_username",  "$db_pass")) or die("can not connect to mysql"); 
+								@mysqli_select_db($GLOBALS["___mysqli_ston"], $db_name) or die("no database"); 
+								echo "successful connection"; 
+								$result_query = "SELECT * FROM `392down`"; 
+
+								$run_result = mysqli_query($GLOBALS["___mysqli_ston"], $result_query); 
+
+								if(mysqli_num_rows($run_result)<1){ 
+
+									echo "<center><b>Oops! sorry, nothing was found in the database!</b></center>"; 
+									exit(); 
+
+								} 
+
+								while($row_result=mysqli_fetch_array($run_result)){ 
+
+									$site_link=$row_result['stop'];
+									$site_link2=$row_result['time']; 
+
+
+
+									echo "<div> 
+
+									<p>$site_link - $site_link2</p> 
+								</div>"; 
+
+							}
+							?>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<p>Maya Puri Chowk, Naraina Village, Dhaula Kuan, Moti Bagh, Narouji Nagar, A.I.I.M.S., Andrews Ganj, Lajpat Nagar, Noida Sector 62</p>
+		</div>
+	</div>
+
+	<div class="col-lg-6">
+		<div class="big_box">
+			<div class="three"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2">507 Up</button></div><span class="bus_stops">Bus Stops:</span>
+			<!-- Modal -->
+			<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">507UP</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<?php    
+							$db_host = "localhost";    
+							$db_username = "root";    
+							$db_pass = "root";   
+							$db_name = "507";  
+
+							@($GLOBALS["___mysqli_ston"] = mysqli_connect("$db_host",  "$db_username",  "$db_pass")) or die("can not connect to mysql"); 
+							@mysqli_select_db($GLOBALS["___mysqli_ston"], $db_name) or die("no database"); 
+							echo "successful connection"; 
+							$result_query = "SELECT * FROM `507`"; 
+
+							$run_result = mysqli_query($GLOBALS["___mysqli_ston"], $result_query); 
+
+							if(mysqli_num_rows($run_result)<1){ 
+
+								echo "<center><b>Oops! sorry, nothing was found in the database!</b></center>"; 
+								exit(); 
+
+							} 
+
+							while($row_result=mysqli_fetch_array($run_result)){ 
+
+								$site_title=$row_result['AveragePrice']; 
+								$site_link=$row_result['stop']; 
+								$site_link1=$row_result['date']; 
+								$site_link2=$row_result['time']; 
+
+
+
+								echo "<div> 
+
+								<p>$site_title $site_link $site_link1 - $site_link2</p> 
+							</div>"; 
+
+						}
+						?>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<p>Dhaula Kuan,Satya Niketan,South Moti Bagh,Shanti Niketan,IIT Hostel,Safdarjang Hospital,South Extention,Andrews Ganj,Lajpat Nagar</p>
+	</div>
+
+
+			<div class="big_box">
+			<div class="three"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal3">507 Down</button></div><span class="bus_stops">Bus Stops:</span>
+			<!-- Modal -->
+			<div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">507 DOWN</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<?php    
+							$db_host = "localhost";    
+							$db_username = "root";    
+							$db_pass = "root";   
+							$db_name = "507down";  
+
+							@($GLOBALS["___mysqli_ston"] = mysqli_connect("$db_host",  "$db_username",  "$db_pass")) or die("can not connect to mysql"); 
+							@mysqli_select_db($GLOBALS["___mysqli_ston"], $db_name) or die("no database"); 
+							echo "successful connection"; 
+							$result_query = "SELECT * FROM `507down`"; 
+
+							$run_result = mysqli_query($GLOBALS["___mysqli_ston"], $result_query); 
+
+							if(mysqli_num_rows($run_result)<1){ 
+
+								echo "<center><b>Oops! sorry, nothing was found in the database!</b></center>"; 
+								exit(); 
+
+							} 
+
+							while($row_result=mysqli_fetch_array($run_result)){ 
+
+								$site_title=$row_result['AveragePrice']; 
+								$site_link=$row_result['stop']; 
+								$site_link1=$row_result['date']; 
+								$site_link2=$row_result['time']; 
+
+
+
+								echo "<div> 
+
+								<p>$site_title $site_link $site_link1 - $site_link2</p> 
+							</div>"; 
+
+						}
+						?>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<p>Dhaula Kuan,Satya Niketan,South Moti Bagh,Shanti Niketan,IIT Hostel,Safdarjang Hospital,South Extention,Andrews Ganj,Lajpat Nagar</p>
+	</div>
+	
+</div>
+</div>
+</div>
+
+</div> <!-- /container -->
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="js/ie10-viewport-bug-workaround.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+</body>
+</html>
